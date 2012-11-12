@@ -1,0 +1,26 @@
+<%unless @sms.blank?%>
+	<h4 class="label label-info">Sms Ativos de sua conta</h4>
+	<div class="control-group">
+	<%@sms.each do |sms|%>
+	    
+	    <div class="controls">
+		    <label class="checkbox" style="width: 400px">
+		    	<%check=''%>
+		    	<%unless @sms_cad.blank?%>
+			    	<%@sms_cad.each do |sm|%>
+			    		<%if sm.sm_id==sms.id%>
+			    			<% check = 'checked'%>
+			    		<%end%>
+			    	<%end%>
+		    	<%end%>
+		    	<input type="checkbox"  name="workflow_config_sends[send_sms][sm_id][]" value="<%=sms.id%>" <%=check%> >
+	                <%=sms.name%>
+		    </label>
+		    
+		</div>
+	<%end%>
+	</div>
+<%end%>
+
+
+

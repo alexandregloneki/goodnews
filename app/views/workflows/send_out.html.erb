@@ -1,0 +1,58 @@
+<script>
+	jQuery(document).ready(function(){
+		jQuery('#type_notification').click(function(){
+			if (jQuery(this).attr('class')=='icon-chevron-up'){
+				jQuery('#comunication_type').slideUp('slow');	
+				jQuery('#type_notification').attr('class', 'icon-chevron-down')
+			}else{
+				jQuery('#comunication_type').slideDown('slow');
+				jQuery('#type_notification').attr('class', 'icon-chevron-up')
+			}
+			
+		});
+		
+		
+	});
+</script>
+
+<div class="row-fluid">
+	<div data-pjax-container="" class="content">
+		<div class="page-header">
+			</div>
+				<%=breadcumb(@breadcumb)%>
+				<%=tabs(@tabsval)%>		
+          	</div>
+         <h3>Dados do Workflow</h3> 	
+		<label class="span4">ID</label>
+		<input type="text" class="span4" readonly="true" value="<%=@workflow.id%>">
+	  	<label class="span4">Nome</label>
+		<input type="text" class="span4" readonly="true" value="<%=@workflow.name%>">
+		<label class="span4">Status</label>
+		<input type="text" class="span4" readonly="true" value="<%=@workflow.status.name%>">
+		<ul class="nav nav-tabs">
+			<li class="icon index_collection_link " rel="" title=""></li>
+		</ul>
+		<h3><%=I18n.t('workflow.mensagens.select_comunication')%></h3>
+		<%= form_for('WorkflowConfigsend',:url=>{:action=>'save_comunication'}, :html => { :class => "form-horizontal denser"}) do |f| %>
+			<div id="comunication_type", class="form-horizontal">
+				<%= render 'email_send' %>
+				<%= render 'sms_send' %>
+				<%=hidden_field_tag('workflow_config_sends[workflow_id]', @workflow.id)%>
+			</div>
+			<div class='form-actions'>
+
+	            <button type='submit' name='sub' data-disable-with='Save' class='btn btn-primary' value="save">
+	              <i class='icon-white icon-ok'></i>
+	              Salvar
+	            </button>
+	            
+	            <span class='extra_buttons'>
+	              <button type='submit' name='sub' data-disable-with='Cancel' class='btn'>
+	              <i class='icon-remove'></i>
+	              Cancelar
+	              </button>
+	              
+	            </span>
+	        </div>
+		<%end%>
+		<i id="type_notification" class="icon-chevron-up" style="cursor:pointer; float: left;"></i>

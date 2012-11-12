@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      
+      function drawChart() {
+
+        // Create the data table.
+      
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Emails', <%=@emails%>],
+          ['Sms', <%=@sms%>],
+          ['Workflows', <%=@workflows%>],
+          
+        ]);
+
+        // Set chart options
+        var options = {'title':'Itens cadastrados',
+                       'width':400,
+                       'height':300,
+                       'colors':['blue', 'green', 'orange']};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      
+      	var data2 = google.visualization.arrayToDataTable([
+          ['Mes', 'Emails', 'Sms'],
+          ['<%=Date.today.month-3.to_i%>',  <%= @comunication_month_3%>, <%=@comunication_month_s3%>],
+          ['<%=Date.today.month-2.to_i%>',  <%= @comunication_month_2%>, <%=@comunication_month_s2%>],
+          ['<%=Date.today.month-1.to_i%>',  <%=@comunication_month_1%>, <%=@comunication_month_s1%>],
+          ['<%=Date.today.month.to_i%>',    <%=@comunication_month%>, <%=@comunication_month_s%>]
+        ]);
+
+        var options2 = {
+          title: 'Comunicações efetuadas',
+          hAxis: {title: 'Ano'+<%=Date.today.year%>, titleTextStyle: {color: 'black'},
+          'width':400,
+           'height':500
+          },
+          colors: ['blue', 'green']
+        };
+
+        var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+        chart1.draw(data2, options2);
+		
+		var data3 = google.visualization.arrayToDataTable([
+          ['Mes', 'Emails', 'Sms'],
+          ['<%=Date.today.month-3.to_i%>',  <%= @comunication_month_3%>, <%=@comunication_month_s3%>],
+          ['<%=Date.today.month-2.to_i%>',  <%= @comunication_month_2%>, <%=@comunication_month_s2%>],
+          ['<%=Date.today.month-1.to_i%>',  <%=@comunication_month_1%>, <%=@comunication_month_s1%>],
+          ['<%=Date.today.month.to_i%>',    <%=@comunication_month%>, <%=@comunication_month_s%>]
+        ]);
+
+        var options3 = {
+          title: 'Comunicações efetuadas',
+           'width':400,
+           'height':300,
+           'colors': ['blue', 'green']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+        chart.draw(data3, options3);
+
+      
+      }
+     
+
+    </script>
+  </head>
+
+  <body>
+  	
+    <!--Div that will hold the pie chart-->
+    <div style="display: -moz-inline-box">
+    <div id="chart_div"></div>
+    <div id="chart_div3"></div>
+    </div>
+    <div id="chart_div1" style="height: 500px"></div>
+	
+  </body>
+
+</html>

@@ -1,0 +1,23 @@
+<%= form_for(@notification) do |f| %>
+  <% if @notification.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+      <% @notification.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :workflow %><br />
+    <%= f.text_field :workflow %>
+  </div>
+  <div class="field">
+    <%= f.label :account %><br />
+    <%= f.text_field :account %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

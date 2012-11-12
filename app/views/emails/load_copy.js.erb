@@ -1,0 +1,7 @@
+$('#<%=params[:actionPar]%>').fadeIn('Slow');
+$('#<%=params[:actionPar]%>').html("<label for='email_<%=params[:actionPar]%>' class='control-label'><%=params[:actionPar]%></label><div class='controls'><input type='text' size='30' name='email[<%=params[:actionPar]%>]' id='email_<%=params[:actionPar]%>' /><a id='remove'>remove</a></div></div>")
+$(document).ready(function(){
+	$('#remove').click(function(){
+		$('#<%=params[:actionPar]%>').fadeOut('Slow');
+	});
+});

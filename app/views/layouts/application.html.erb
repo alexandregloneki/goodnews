@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GoodNotice</title>
+  <%= stylesheet_link_tag    "wice_grid.css", "rails_admin/imports", "rails_admin/rails_admin", "mask" %>
+  <%= javascript_include_tag "application", "ckeditor/init",  "bootstrap.min", "repair_ddd_sp"%>
+  <%= csrf_meta_tags %>
+  <script>
+  	jQuery(document).ready(function(){
+  		jQuery('a').mouseover(function(){
+  			jQuery(this).css('color', '#005580');
+  			//jQuery(this).css('background-color', '#fff');
+  		});
+  		var pathname = window.location.pathname.substring(1)
+		 if (pathname==''){
+		 	jQuery('#home').addClass('active')
+		 }else{
+		 	
+		 	var RegExp = /sms/;
+			if (pathname.search(RegExp) != -1) {
+                jQuery('#sms').addClass('active')
+			}
+			else {
+				var RegExp = /emails/;
+				if(pathname.search(RegExp) != -1){
+					jQuery('#Emails').addClass('active')
+				}
+				else
+				{
+					var RegExp = /workflows/;
+					if(pathname.search(RegExp) != -1){
+						jQuery('#workflows').addClass('active')
+					}
+					else
+					{
+						var RegExp = /payments/;
+						if(pathname.search(RegExp) != -1){
+							jQuery('#payments').addClass('active')
+						}
+						else
+						{
+							var RegExp = /accounts/;
+							if(pathname.search(RegExp) != -1){
+								jQuery('#account').addClass('active')
+							}
+							else{
+								var RegExp = /home/;
+								if (pathname.search(RegExp) != -1) {
+					                jQuery('#home').addClass('active')
+								}
+								else{
+									var RegExp = /notifications/;
+									if (pathname.search(RegExp) != -1) {
+					                	jQuery('#notifications').addClass('active')
+									}	
+								}
+							}	
+						}	
+					}
+				}
+			        
+			}
+		}
+  	});
+  </script>
+  <style>
+  	
+  	body, a:hover{
+  		color:#00580;
+  		text-decoration:underline;
+  	}
+  </style>
+</head>
+<body class="rails_admin">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a href="/" class="brand pjax">GoodNotice</a>
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
+						<li><a class="pjax" href="/">Home</a></li>
+						<%unless current_user.nil?%>
+							<li><a class="pjax"><%=current_user.email%></a></li>
+							<li><a rel="nofollow" data-method="delete" href="/users/sign_out"><span class="label label-important">Sair</span></a></li>
+						<%end%>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+      			<h3>Navegação</h3>
+			      <ul class="nav nav-pills nav-stacked">
+			        <li id="home"><a href="<%=root_url()%>" >Home</a></li>
+			        <li id="account"><a href="<%=accounts_url()%>" >Minha Conta</a></li>
+			        <li id="Emails"><a href="<%=emails_url()%>" >E-mails</a></li>
+			        <li id="sms"><a href="<%=sms_url()%>" >Sms</a></li>
+			        <li id="workflows"><a href="<%=workflows_url()%>" >Workflows</a></li>
+			        <li id="payments"><a href="<%=payments_url()%>" >Pagamentos</a></li>
+			        <li id="notifications"><a href="<%=notifications_url()%>" >Notificações</a></li>
+			      </ul>
+		    </div>
+			
+			
+			<div class="span9">
+				<div class="page-header">
+					<h1>GoodNotice</h1>
+				</div>
+				<%= render 'layouts/flash_messages' %>
+				<div class="row-fluid">
+					<%= yield %>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

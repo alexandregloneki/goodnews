@@ -1,0 +1,54 @@
+<dt class="label name_sender_field string_type">Workflow Regras</dt>
+	
+	<% @notification.workflow.rules.each_with_index do |rule, idx| %>
+		
+		<span class="badge badge-info rules" style="cursor:pointer" shw="<%=rule.id%>"><%=idx+1%></span>
+		<div id="<%=rule.id%>" class="rules_show" style="margin-left: 20px">
+			
+			<div class="control-group string_type name_field">
+			  	<label class="control-label">Nome da Regra</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= rule.name %></pre>
+			  	</div>
+		  	</div>
+			<div class="control-group string_type name_field">
+			  	<label class="control-label">Campo de Referencia</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= rule.field_references %></pre>
+			  	</div>
+		  	</div>
+		  	<div class="control-group string_type name_field">
+			  	<label class="control-label">Campo de comparacao</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= rule.field_comparation %></pre>
+			  	</div>
+		  	</div>
+		  	<div class="control-group string_type name_field">
+			  	<label class="control-label">Valor de comparacao</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= rule.value_comparation %></pre>
+			  	</div>
+		  	</div>
+		  	<div class="control-group string_type name_field">
+			  	<label class="control-label">Tipo do campo (valor de comparacao)</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= rule.type_field.name %></pre>
+			  	</div>
+		  	</div>
+		  	<div class="control-group string_type name_field">
+			  	<label class="control-label">Operador</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= rule.operator.name %></pre>
+			  	</div>
+		  	</div>
+			
+		</div>
+
+<br />
+<ul class="nav nav-tabs" style="margin-top: 10px">
+	<li class="icon index_collection_link " rel="" title="">
+	</li>
+</ul>
+	<% end %>
+
+	

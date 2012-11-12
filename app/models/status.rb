@@ -1,0 +1,8 @@
+class Status < ActiveRecord::Base
+ATIVO = 1
+INATIVO = 2
+PENDENTE = 3
+CANCELADO = 4
+AGUARDANDO_PAGAMENTO =5
+PAGO = 6
+end

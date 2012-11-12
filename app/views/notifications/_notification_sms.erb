@@ -1,0 +1,28 @@
+<%unless @sms.blank?%>
+	<% @sms.each do |sm| %>
+		<br />
+	    <span class="badge badge-info rules" style="cursor:pointer" shw="sm_<%=sm.id%>">Sms</span>
+		<div id="sm_<%=sm.id%>" class="rules_show" style="margin-left: 20px">
+			
+			<div class="control-group string_type name_field">
+			  	<label class="control-label">Nome do Sms</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= sm.sm.name%></pre>
+			  	</div>
+		  	</div>
+		  	<div class="control-group string_type name_field">
+			  	<label class="control-label">Receptor</label>
+				<div class="controls">
+				   <pre class="prettyprint"><%= sm.sm.number_dispatch %></pre>
+			  	</div>
+		  	</div>
+		  	
+		</div>
+	<%end%>
+<br />
+<ul class="nav nav-tabs" style="margin-top: 10px">
+	<li class="icon index_collection_link " rel="" title="">
+	</li>
+</ul>
+<%end%>
+

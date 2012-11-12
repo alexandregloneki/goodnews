@@ -1,0 +1,21 @@
+<%= grid(@notifications_grid, :upper_pagination_panel => true) do |g|
+
+  g.column :name=>I18n.t('activerecord.attributes.notification.workflow'),:attribute=>'workflow_id', :filter=>false, :in_csv => true do |notification|
+    notification.workflow.name
+  end
+
+  g.column  :name=>I18n.t('activerecord.attributes.notification.created_at'), :attribute=>'created_at', :in_csv => true do |notification|
+    l(notification.created_at, :format=>:short)
+  end
+
+  g.column :html=>{:class=>"last links"}, :in_csv => false do |notification|
+  
+    "<ul class='inline'><li class='icon show_member_link' rel='tooltip' title='Mostrar'>".html_safe+
+    	"<a href='/notifications/#{notification.id}' class='pjax'>".html_safe+
+          "<i class='icon-info-sign'></i>".html_safe+
+          "<span style='display:none'>Show</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe
+    
+  end
+end -%>

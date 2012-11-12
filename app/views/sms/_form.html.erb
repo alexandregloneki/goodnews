@@ -1,0 +1,75 @@
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#sm_number_dispatch").mask("(99) 9999-9999");
+		jQuery("#sm_number_dispatch").repair(jQuery("#sm_number_dispatch"), "sm_number_dispatch");	    
+	});
+	function textCounter(field,cntfield,maxlimit) {
+		console.log(field.val().length);
+		if (field.val().length > maxlimit) // if too long...trim it!
+		field.val(field.val().substring(0, maxlimit));
+		else
+		var res = maxlimit - field.val().length;
+		cntfield.val(res)
+		}
+</script>
+<div class="row-fluid">
+	<div data-pjax-container="" class="content">
+		<div class="page-header">
+			</div>
+				<%=breadcumb(@breadcumb)%>
+				<%=tabs(@tabsval)%>		
+          	</div>
+		<%= form_for(@sm, :html => { :class => "form-horizontal denser"}) do |f| %>
+		  
+		  
+		  <% if @sm.errors.any? %>
+		    <div class="alert alert-error">
+		      <ul>
+		      <% @sm.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		  <fieldset>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :name, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :name, :required=>true %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :status, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.select :status_id, @status %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :number_dispatch, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :number_dispatch %>
+		  	</div>
+		  </div>
+		   
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :name_sender, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :name_sender%>
+		  	</div>
+		  </div>
+		  
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :message, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_area :message, :rows=>2, :cols=>40, :id=>'message', :onfocus=>"if(jQuery(this).val()=='Digite sua mensagem'){jQuery(this).val('')}", :onblur => "if(jQuery(this).val==''){jQuery(this).val('Digite sua mensagem')}", :onKeyDown=>"textCounter(jQuery('#message'), jQuery('#remLen1'), 140)", :onKeyUp=>"textCounter(jQuery('#message'), jQuery('#remLen1'), 140)", :placeholder=>'Digite sua mensagem'%>
+			</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<label class="control-label">Caracteres Restantes</label>
+		  	<div class="controls">
+			   <input readonly type="text" id="remLen1" name="remLen1" size="3" maxlength="3" value="140">
+			</div>
+    	  </div>
+    	
+  <%=actions%>
+<% end %>

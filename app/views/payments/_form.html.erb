@@ -1,0 +1,31 @@
+<%= form_for(@payment) do |f| %>
+  <% if @payment.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+      <% @payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :imagem %><br />
+    <%= f.text_field :imagem %>
+  </div>
+  <div class="field">
+    <%= f.label :codigo_integracao %><br />
+    <%= f.text_field :codigo_integracao %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

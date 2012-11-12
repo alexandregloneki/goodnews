@@ -1,0 +1,28 @@
+
+<%=breadcumb(@breadcumb)%>
+<%=tabs(@tabsval)%>
+<dl>
+	<dt class="ddd_field label string_type">Name</dt>
+	<dd>  
+		<pre class="prettyprint"><%= @sm.name %></pre>
+	</dd>
+	<dt class="label number_dispatch_field string_type">Status</dt>
+	<dd>
+		<pre class="prettyprint"><%= @sm.status.name %></pre>
+	</dd>
+	
+	<dt class="label phone_sender_field string_type">Number dispatch</dt>
+	<dd>
+		<pre class="prettyprint"><%= @sm.number_dispatch %></pre>
+	</dd>
+	<dt class="label phone_sender_field string_type">Name sender</dt>
+	<dd>
+		<pre class="prettyprint"><%= @sm.name_sender %></pre>
+	</dd>
+	<dt class="label phone_sender_field string_type">Message</dt>
+	<dd>
+		<pre class="prettyprint"><%= @sm.message.html_safe %></pre>
+	</dd>
+	<%= link_to 'Back', sms_path %>		
+</dl>
+

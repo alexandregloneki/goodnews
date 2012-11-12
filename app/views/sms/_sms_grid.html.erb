@@ -1,0 +1,35 @@
+<%= grid(@sms_grid, :upper_pagination_panel => true) do |g|
+
+  g.column :name=>'Nome',:attribute=>'name', :in_csv => true do |sms|
+    sms.name
+  end
+
+  g.column :name=>'Status', :attribute=>'status_id',:in_csv => true, :custom_filter=>@status do |sms|
+    sms.status.name
+  end
+
+  g.column :html=>{:class=>"last links"}, :in_csv => false do |sms|
+  
+    "<ul class='inline'><li class='icon show_member_link' rel='tooltip' title='Mostrar'>".html_safe+
+    	"<a href='/sms/#{sms.id}' class='pjax'>".html_safe+
+          "<i class='icon-info-sign'></i>".html_safe+
+          "<span style='display:none'>Show</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe+
+    
+      "<li class='icon edit_member_link ' rel='tooltip' title='Editar'>".html_safe+
+        "<a href='/sms/#{sms.id}/edit' class='pjax'>".html_safe+
+          "<i class='icon-pencil'></i>".html_safe+
+          "<span style='display:none'>Edit</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe+
+    
+      "<li class='icon delete_member_link ' rel='tooltip' title='Excluir'>".html_safe+
+        "<a rel='nofollow' data-method='delete' data-confirm='Tem certeza?' href='/sms/#{sms.id}'>".html_safe+
+          "<i class='icon-remove'></i>".html_safe+
+          "<span style='display:none'>Delete</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe+
+    "</ul>".html_safe
+  end
+end -%>

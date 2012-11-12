@@ -1,0 +1,100 @@
+<script>
+	jQuery(document).ready(function(){
+		jQuery('#key_access').click(function(){
+			jQuery.ajax({
+				type:'POST',
+				url:'accounts/key_generate'
+			});
+		});
+	});
+</script>
+<%=breadcumb(@breadcumb)%>
+<%=tabs(@tabsval)%>
+<div class="well">
+	<h3 class="label label-info"><%=I18n.t('account.titulos.data_account')%></h3><br/>
+	<%=image_tag('check.png', :style=>'display:inline; float:right') if @account.status_id==1%>
+   	<%=image_tag('cancel.png', :style=>'display:inline; float:right', :size=>'30x30') if @account.status_id==2%>
+   	<%=image_tag('pending.png',:style=>'display:inline; float:right', :size=>'35x35') if @account.status_id==3%>
+   	<%=image_tag('cancel_cancel.png', :style=>'display:inline; float:right') if @account.status_id==4%>
+	<label class="span4">Status</label>
+    <input type="text" placeholder="Type something…" class="span4" readonly="true" value="<%=@account.status.name%>">
+	<label class="span4">Criada em:</label>
+	<input type="text" placeholder="Type something…" class="span4" readonly="true" value="<%=@account.created_at%>">
+	
+	<h3 class="label label-info"><%=I18n.t('account.titulos.data_user')%></h3><br/>
+	<label class="span4">Email</label>
+    <input type="text" class="span4" readonly="true" value="<%=@account.user.email%>">
+    <%i=1%>
+    <%unless @account.user.name.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Nome do Usuário</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.name%>">
+    <%end%>
+    <%unless @account.user.second_name.nil?%>
+	    <%i+=1%>
+	    <label class="span4">SobreNome</label>
+	    <input type="text" class="span4" readonly="true" value="<%= @account.user.second_name %>">
+    <%end%>
+    <%unless @account.user.user_document.nil?%>
+	    <%i+=1%>
+	    <label class="span4">CPF</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.user_document%>">
+    <%end%>
+    <%unless @account.user.phone.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Telefone</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.phone%>">
+    <%end%>
+    <%unless @account.user.country.nil?%>
+	    <%i+=1%>
+	    <label class="span4">País</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.country%>">
+    <%end%>
+    <%unless @account.user.state.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Estado</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.state%>">
+    <%end%>
+    <%unless @account.user.city.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Cidade</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.city%>">
+    <%end%>
+    <%unless @account.user.neighbord.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Bairro</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.neighbord%>">
+    <%end%>
+    <%unless @account.user.street.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Rua</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.street%>">
+    <%end%>
+    <%unless @account.user.number_street.nil?%>
+	    <%i+=1%>
+	    <label class="span4">Número</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.number_street%>">
+    <%end%>
+    <%unless @account.user.postal_code.nil?%>
+	    <%i+=1%>
+	    <label class="span4">CEP</label>
+	    <input type="text" class="span4" readonly="true" value="<%=@account.user.postal_code%>">
+    <%end%>
+    <h3 class="label label-info"><%=I18n.t('account.titulos.key_access')%></h3><br/>
+   	<label class="span4"><button class="btn btn-primary" style="float:left" id="key_access"><i class="icon-refresh"></i>Gerar Chave</button></label>
+  	<input type="text" class="span4" value="<%=@account.token_access%>" id="key_response">
+    
+    <% div = @account.user.attributes.count-12.to_f%>
+    <% qtd = (i*100.to_f)%>
+    <%result = (qtd.to_f/div.to_f)%>
+    <%if result!=100.0 && result<100.0 %>
+	    <div class="alert alert-info">
+	    	Os dados de sua conta estão <%=result.round(2)%> % preenchidos por favor edite sua conta e termine seu cadastro!
+	    </div>
+        <div class="progress progress-striped active">
+    		<div class="bar" style="width: <%=result.round(2)%>%;"></div>
+   		</div>
+   	<%end%>
+   	
+   	
+</div>

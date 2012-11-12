@@ -1,0 +1,28 @@
+<%unless @emails.blank?%>
+	<h4 class="label label-info">E-mails Ativos de sua conta</h4>
+	<div class="control-group">
+	<%@emails.each do |email|%>
+		<%check =''%>
+	    <%unless @emails_cad.blank?%>
+	    	<%check =''%>
+	    	<%@emails_cad.each do |mail|%>
+	    		<%if mail.email_id==email.id %>
+	    			<% check = 'checked'%>
+	    			<%break%>
+	    		<%end%>
+	    		
+	    	<%end%>
+    	<%end%>
+    	<div class="controls">
+		    <label class="checkbox">
+		    	<input type="checkbox"  name="workflow_config_sends[send_mail][email_id][]" value="<%=email.id%>" <%=check%>>
+	                <%=email.title%>
+		    </label>
+		    
+		</div>
+	<%end%>
+	</div>
+<%end%>
+
+
+

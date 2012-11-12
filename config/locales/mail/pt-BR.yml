@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      email: 'E-mail'
+    attributes:
+      email:
+        title: 'Título'
+        to: 'Para'
+        message: 'Mensagem'
+        status: 'Status'
+  email:
+    mensagens:
+      create_success: 'Email criado com sucesso!'
+      update_success: 'Email alterado com sucesso!'
+      create_fail: 'Falha ao criar o email'
+      update_fail: 'Falha ao autalizar o email'
+      not_found_account: 'Email não encontrado para esta conta.'
+      delete_success: 'Email excluído com sucesso!' 
+      delete_email_log: 'Removido o email de título '
+      create_email_log: 'Criado o email de título'
+      update_email_log: 'Atualizado o email de título'
+    
+      

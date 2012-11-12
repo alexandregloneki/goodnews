@@ -1,0 +1,77 @@
+<div class="row-fluid">
+	<div data-pjax-container="" class="content">
+		<div class="page-header">
+			</div>
+				<%=breadcumb(@breadcumb)%>
+				<%=tabs(@tabsval)%>		
+          	</div>
+		<%= form_for(@email, :html => { :class => "form-horizontal denser"}) do |f| %>
+		  
+		  <% if @email.cco.nil?%>
+			  <div class="field" style="float: right">
+			    <%= link_to 'CCO', {:action=>"load_copy", :actionPar=>"cco"}, :remote=>true %>
+			  </div>
+		  <%end%>
+		  <% if @email.cc.nil?%>
+			  <div class="field" style="float: right">
+			    <%= link_to 'CC', {:action=>"load_copy", :actionPar=>"cc"}, :remote=>true %>
+			  </div>
+		  <%end%>
+		  <% if @email.errors.any? %>
+		    <div class="alert alert-error">
+		      <ul>
+		      <% @email.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		  <fieldset>
+		  <div class="control-group string_type name_field">
+		  	
+		  	<%= f.label :title, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :title, :required=>true %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :to, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :to %>
+		  	</div>
+		  </div>
+		   
+		  <%unless @email.cc.nil?%>
+		  	  <div class="control-group string_type name_field">
+			  	<%= f.label :cc, :class=>"control-label" %>
+				<div class="controls">
+				   <%= f.text_field :cc %>
+			  	</div>
+			  </div>
+		  <%end%>
+		  <%unless @email.cco.nil?%>
+		  	 <div class="control-group string_type name_field">
+			  	<%= f.label :cco, :class=>"control-label" %>
+				<div class="controls">
+				   <%= f.text_field :cco %>
+			  	</div>
+			  </div>
+		  <%end%>
+		  
+		  <div class="control-group string_type name_field" id="cc" style="display: none"></div>
+		  <div class="control-group string_type name_field" id="cco"style="display: none"></div>
+		  
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :status, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.select :status_id, @status %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :message, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.cktext_area :message, :toolbar => 'Basic', :width => 700, :height => 300 %>
+			</div>
+		  </div>
+  <%=actions%>
+<% end %>

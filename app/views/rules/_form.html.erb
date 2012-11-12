@@ -1,0 +1,35 @@
+<%= form_for(@rule) do |f| %>
+  <% if @rule.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+      <% @rule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :field_references %><br />
+    <%= f.text_field :field_references %>
+  </div>
+  <div class="field">
+    <%= f.label :field_comparation %><br />
+    <%= f.text_field :field_comparation %>
+  </div>
+  <div class="field">
+    <%= f.label :value_comparation %><br />
+    <%= f.text_field :value_comparation %>
+  </div>
+  <div class="field">
+    <%= f.label :operator %><br />
+    <%= f.text_field :operator %>
+  </div>
+  <div class="field">
+    <%= f.label :workflow %><br />
+    <%= f.text_field :workflow %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

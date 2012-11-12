@@ -1,0 +1,67 @@
+<%=breadcumb(@breadcumb)%>
+<%=tabs(@tabsval)%>
+<%i=0%>
+<table class="table table-condensed table-striped">
+	<%if !@logs[:insert].blank? || !@logs[:update].blank?%>
+		<thead>
+			<th class="header pjax"><%=I18n.t('application.titulos.date')%></th>
+			<th class="header pjax"><%=I18n.t('application.titulos.user')%></th>
+			<th class="header pjax"><%=I18n.t('application.titulos.ip')%></th>
+			<th class="header pjax"><%=I18n.t('application.titulos.message')%></th>
+		</thead>
+		<tbody>
+			<%unless @logs[:insert].blank?%>
+				<%i+=1%>
+				<%@logs[:insert].each do |ins|%>
+					<tr>
+						<td><%=l(ins["time"] , :format=>:short) unless ins["time"].nil?%></td>
+						<td><%=current_user.email%></td>
+						<td><%=ins["ipvalue"]%></td>
+						<td><%=ins["acoes"].html_safe if !ins["acoes"].blank?%></td>
+					</tr>
+				<%end%>
+			<%end%>
+			<%unless @logs[:update].blank?%>
+				<%i+=1%>
+				<%@logs[:update].each do |upd|%>
+					<tr>
+						<td><%=l(upd["time"], :format=>:short) unless upd["time"].nil?%></td>
+						<td><%=current_user.email%></td>
+						<td><%=upd["ipvalue"]%></td>
+						<td><%=upd["acoes"].html_safe if !upd["acoes"].blank?%></td>
+						
+					</tr>
+				<%end%>
+			<%end%>
+			<%unless @logs[:export].blank?%>
+				<%i+=1%>
+				<%@logs[:export].each do |upd|%>
+					<tr>
+						<td><%=l(upd["time"], :format=>:short) unless upd["time"].nil?%></td>
+						<td><%=current_user.email%></td>
+						<td><%=upd["ipvalue"]%></td>
+						<td><%=upd["acoes"].html_safe if !upd["acoes"].blank?%></td>
+						
+					</tr>
+				<%end%>
+			<%end%>
+			<%unless @logs[:destroy].blank?%>
+				<%i+=1%>
+				<%@logs[:destroy].each do |upd|%>
+					<tr>
+						<td><%=l(upd["time"], :format=>:short) unless upd["time"].nil?%></td>
+						<td><%=current_user.email%></td>
+						<td><%=upd["ipvalue"]%></td>
+						<td><%=upd["acoes"].html_safe if !upd["acoes"].blank?%></td>
+						
+					</tr>
+				<%end%>
+			<%end%>
+		</tbody>
+	<%end%>
+</table>
+<%if i==0%>
+	<div class="alert">
+	     <strong>Warning!</strong> Não existem históricos de sms
+	</div>
+<%end%>

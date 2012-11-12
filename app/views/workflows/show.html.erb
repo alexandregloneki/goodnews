@@ -1,0 +1,36 @@
+<%=breadcumb(@breadcumb)%>
+<%=tabs(@tabsval)%>
+<dl>
+	<dt class="ddd_field label string_type">Name</dt>
+	<dd>  
+		<pre class="prettyprint"><%= @workflow.name %></pre>
+	</dd>
+	<dt class="label number_dispatch_field string_type">Status</dt>
+	<dd>
+		<pre class="prettyprint"><%= @workflow.status.name %></pre>
+	</dd>
+	
+	<%unless @workflow.date_start.nil?%>
+	<dt class="label name_sender_field string_type">Date start</dt>
+	<dd>
+		<pre class="prettyprint"><%=I18n.l(@workflow.date_start) %></pre>
+	</dd>
+	<%end%>
+	
+	<%unless @workflow.date_finish.nil?%>
+	<dt class="label phone_sender_field string_type">Date Finish</dt>
+	<dd>
+		<pre class="prettyprint"><%= I18n.l(@workflow.date_finish)%></pre>
+	</dd>
+	<%end%>
+	
+	<%unless @workflow.rules.nil?%>
+		<dt class="label message_field text_type">Workflow Rules</dt>
+		<dd>
+			<% for rule in @workflow.rules %>
+		  		<pre class="prettyprint"><%=link_to "#{rule.name}", rule_path(rule.id) %></pre>
+		  	<% end %>
+	  	</dd>
+	<%end%>
+	<%= link_to 'Back', workflows_path %>	
+</dl>

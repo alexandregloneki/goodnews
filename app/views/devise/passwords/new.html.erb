@@ -1,0 +1,24 @@
+<script>
+	$(document).ready(function(){
+		$('#error_explanation').children('h2').remove();
+		
+		if($('#error_explanation').length){
+			$('.box').css('height','230px');
+		}
+	});
+</script>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class=>"box login", :style=>"height:200px" }) do |f| %>
+		<label>Esqueceu sua senha?</label>
+		
+		<fieldset class="boxBody">
+			<label style="color:red; font-size: 11px"><%= devise_error_messages! %></label>
+			<label>E-mail</label>
+			<%= f.email_field :email, :tabindex=>"1", :required=>true %>
+		</fieldset>
+		<footer>
+		  <%= f.submit "Enviar nova senha", :class=>"btnLogin" %>
+		  <%=link_to 'voltar', emails_path()%>
+		</footer>
+		
+<% end %>
+			

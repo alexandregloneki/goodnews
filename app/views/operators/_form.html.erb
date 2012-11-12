@@ -1,0 +1,23 @@
+<%= form_for(@operator) do |f| %>
+  <% if @operator.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+      <% @operator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :simbol %><br />
+    <%= f.text_field :simbol %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

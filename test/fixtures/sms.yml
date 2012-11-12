@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ddd: MyString
+  number_dispatch: MyString
+  name_sender: MyString
+  phone_sender: MyString
+  message: MyText
+  workflow: 
+
+two:
+  ddd: MyString
+  number_dispatch: MyString
+  name_sender: MyString
+  phone_sender: MyString
+  message: MyText
+  workflow: 

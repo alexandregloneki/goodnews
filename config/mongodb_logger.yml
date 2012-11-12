@@ -1,0 +1,13 @@
+production:
+  database: my_app
+  capsize: <%= 500.megabytes %>
+  host: localhost
+  port: 27017
+  replica_set: true
+  
+development:
+  database: news
+  capsize: <%= 500.megabytes %>
+  host: localhost
+  port: 27017
+  replica_set: true

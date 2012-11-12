@@ -1,0 +1,136 @@
+<script>
+	jQuery(document).ready(function(){
+		
+		jQuery(".collapse").collapse('show');
+		jQuery('.btn-info').click(function(){
+			jQuery('#informacoes').modal('toggle')
+		});
+		
+		<%unless @order.nil?%>
+			
+			//habilita o botao do pagseguro
+			<%if !@order.nil? && @order.plan.id.to_i==1%>
+				var html_text = '<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post"><input type="hidden" name="code" value="7A2E18B33D3D911004944FBF51A608C6" /><input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" /></form>'
+			<%end%>
+			<%if !@order.nil? && @order.plan.id.to_i==2%>
+				var html_text = '<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post"><input type="hidden" name="code" value="39651ED521213B3EE4803FA5BCBA07A3" /><input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" /></form>'
+			<%end%>
+			<% if !@order.nil? && @order.plan.id.to_i==3%>
+				var html_text = '<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post"><input type="hidden" name="code" value="01BF7BE1E7E796C22488EF80205C6E4D" /><input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" /></form>'
+			<%end%>
+					
+			jQuery('#plan_<%=@order.plan.id%>').parent('div').css('border-color','#5BB65B');
+			jQuery('#plan_<%=@order.plan.id%>').append('<i class="icon-ok" style="margin-left:200px; margin-top:-25px"><i>');
+			<% if @order.status_id != 6%>
+				jQuery('#plan_<%=@order.plan.id%>').append(html_text);
+			<%end%>
+			jQuery(".collapse").collapse('hide');
+		<%end%>
+		jQuery('.label-success').click(function(){
+			//habilita o botao do pagseguro
+			if(jQuery(this).attr('value')==1){
+				var html_text = '<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post"><input type="hidden" name="code" value="7A2E18B33D3D911004944FBF51A608C6" /><input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" /></form>'
+			}
+			if(jQuery(this).attr('value')==2){
+				var html_text = '<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post"><input type="hidden" name="code" value="39651ED521213B3EE4803FA5BCBA07A3" /><input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" /></form>'
+			}
+			if(jQuery(this).attr('value')==3){
+				var html_text = '<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post"><input type="hidden" name="code" value="01BF7BE1E7E796C22488EF80205C6E4D" /><input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" /></form>'
+			}
+			jQuery('.label-success').each(function(){
+				
+				jQuery('#plan_'+jQuery(this).attr('value')).parent('div').css('border-color', '#E5E5E5');
+				jQuery(this).parent('p').parent('div').parent('div').parent('div').children('div').children('i').remove();
+				jQuery(this).parent('p').parent('div').parent('div').parent('div').children('div').children('form').remove();
+				
+			});
+			jQuery(".collapse").collapse('hide');
+			jQuery('#plan_'+jQuery(this).attr('value')).append('<i class="icon-ok" style="margin-left:200px; margin-top:-25px"><i>');
+			jQuery('#plan_'+jQuery(this).attr('value')).append(html_text);
+			jQuery('#plan_'+jQuery(this).attr('value')).parent('div').css('border-color','#5BB65B');
+		});
+	});
+</script>
+
+<%=breadcumb(@breadcumb)%>
+<%=tabs(@tabsval)%>
+		<ul class="nav nav-tabs">
+			<li class="icon index_collection_link " rel="" title=""></li>
+		</ul>
+		<h3>Planos</h3>	
+		<div class="span12">
+		<div id="accordion2" class="accordion">
+		    <%if @order.nil?%>
+		    <%@plans.each_with_index do |plan, index|%>
+			    <%if index==0%>
+			    	<% col = 'One'%>
+			    <%else%>
+			    	<%if index==1%>
+			    	 <% col = 'Two'%>
+			    	<%else%>
+			    	 <% col = 'Three'%>
+			    	<%end%>
+			    <%end%>
+			    
+			    <div class="accordion-group">
+			      <div class="accordion-heading" id="plan_<%=plan.id%>">
+			        <a href="#collapse<%=col%>" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+			          <%=plan.name%> Codigo: <%=plan.code%>
+			        </a>
+			      </div>
+			      <div class="accordion-body collapse" id="collapse<%=col%>" style="height: 0px;">
+			        <div class="accordion-inner">
+			          	<%=plan.description%>  <%=number_to_currency(plan.value, :separator => ",", :delimiter => ".", :unit => "R$")%>
+			          	<p style="float:right">	
+			        		<span class="label label-success" style="cursor: pointer" value="<%=plan.id%>">Assinar <%=plan.name%></span>
+			        	</p>
+			        </div>
+			      </div>
+			    </div>
+			    <br />
+			  <%end%>
+		  </div>
+		  <%else%>
+		  	<div class="accordion-group">
+		      <div class="accordion-heading" id="plan_<%=@order.plan.id%>">
+		        <a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+		          <%=@order.plan.name%> Codigo: <%=@order.plan.code%>
+		        </a>
+		      </div>
+		      <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+		        <div class="accordion-inner">
+		          Plano Economy destinado a pessoas ou empresas com pouco trafego de informações, com valor acessivel de R$ <%=@plans.first.value%>
+		        </div>
+		      </div>
+		    </div>
+		    <br />
+		    <%=mensagens_vencimento(@order.created_at+30.days, @order.created_at, @order.status.id)%>
+		  <%end%>
+		</div>
+		<ul class="nav nav-tabs">
+			<li class="icon index_collection_link " rel="" title=""></li>
+		</ul>
+		<h3>Ainda esta com duvidas?</h3>
+	   	<div class='form-actions'>
+		  	<button type="button" data-toggle="modal" data-target="#informacoes" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"></i> Mais Informação</button>
+		  	
+		</div>
+		
+		<!-- Modal -->
+		<div id="informacoes" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Mais informacoes <i class="icon-info-sign"></i></h3>
+		</div>
+		<div class="modal-body">
+		<p>Bem Vindo, ao planos e servicos que a HNews tem para lhe oferecer!</p>
+		<p>Escolha, seu plano de acordo com suas necessecidades</p>
+		<p>Clique em pagar com PagSeguro, uma maneira facil e segura de realizar o pagamento.</p>
+		<p>Apos o pagamento de sua mensalidade, sua conta estara habilitada para realizar os envios de suas regras cadastradas.</p>
+		<p>Caso queira trocar um plano ja adiquirido ou em caso de persistencia de duvidas entre em contato com o numero 0800-123-123.</p>
+		<p>Obrigado pela preferencia, e aproveite de mais um servico HNews</p>
+		</div>
+		<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+		</div>

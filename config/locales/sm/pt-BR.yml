@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    attributes:
+      sm:
+        name: 'Nome'
+        ddd: 'DDD'
+        number_dispatch: 'Telefone do Receptor'
+        name_sender: 'Nome do Emissor'
+        phone_sender: 'Telefone do Emissor'
+        message: 'Mensagem'

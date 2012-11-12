@@ -1,0 +1,16 @@
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class=>"box login", :style=>"height:300px" }) do |f| %>
+  <label>Trocar Senha</label>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %> 
+  <fieldset class="boxBody">
+	<label>Nova Senha</label>
+	<%= f.password_field :password, :tabindex=>"1", :required=>true %>
+    <label>Confirme Sua Senha</label>
+	<%= f.password_field :password_confirmation, :tabindex=>"1", :required=>true %>
+  	<%= render "links" %>
+  </fieldset>
+  <footer>
+	  <%= f.submit "Trocar senha", :class=>"btnLogin" %>
+ </footer>
+<% end %>
+			

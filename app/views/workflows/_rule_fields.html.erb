@@ -1,0 +1,48 @@
+<div class="fields">
+    <p class="fields_rule">
+		
+		<div class="control-group string_type name_field">
+			<i  class="icon-hand-right" style="cursor:pointer; float: left;"></i>
+			<%= f.label :name, :class=>"control-label" %>
+			<div class="controls">
+		   		<%= f.text_field :name, :required=>true %>
+				<span class="remove" style="float: right">
+ 					<%= link_to_remove_fields "Remover Regra", f%>
+ 				</span>
+			</div>
+		</div>
+		<div class="control-group string_type name_field">
+			<%= f.label :field_references, :class=>"control-label" %>
+			<div class="controls">
+		   		<%= f.text_field :field_references, :required=>true %>
+			</div>
+		</div>
+		<div class="control-group string_type name_field">
+			<%= f.label :field_comparation, :class=>"control-label" %>
+			<div class="controls">
+		   		<%= f.text_field :field_comparation, :required=>true %>
+			</div>
+		</div>
+		<div class="control-group string_type name_field">
+			<%= f.label :type_field_id, :class=>"control-label" %>
+			<div class="controls">
+		   		<%= f.select :type_field_id, @type_fields %>
+			</div>
+		</div>
+		<div class="control-group string_type name_field">
+			<%= f.label :operator_id, :class=>"control-label" %>
+			<div class="controls">
+		   		<%= f.select :operator_id, @operators %>
+			</div>
+		</div>
+		<div class="control-group string_type name_field">
+			<%= f.label :value_comparation, :class=>"control-label" %>
+			<div class="controls">
+		   		<%= f.text_field :value_comparation, :required=>true %>
+			</div>
+		</div>
+	</p>
+	<p>
+ 		
+ 	</p>
+</div>

@@ -1,0 +1,30 @@
+<h3>Api de Envio de dados para Workflow</h3>
+<form action="<%=APP_URL%>/api/workflows_rules/send_data" method="post">
+	<fieldset>
+		<legend class="label label-success">Enviar dados Workflow</legend>
+		<p>
+			<label>Token de Acesso</label><br />
+			<input name="token_access" />
+		</p>
+		<p>
+			<label>Campo de referencia</label><br />
+			<input name="workflow_rules[]field_reference" />
+		</p>
+		<p>
+			<label>Campo de comparacao</label><br />
+			<input name="workflow_rules[]field_comparation" />
+		</p>
+		<p>
+			<label>Valor de comparacao</label><br />
+			<input name="workflow_rules[]value_comparation" />
+		</p>
+		<p>
+			<label>Tipo Campo Comparacao</label><br />
+		
+		</p>
+	<input type="button" class="btn" value="Voltar"/>
+	<input type="submit" class="btn btn-success" value="Enviar"/>
+	
+	</fieldset>
+</form>	
+

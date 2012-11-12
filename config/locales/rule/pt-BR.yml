@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      rule: 'Regras'
+    attributes:
+      rule:
+        name: 'Nome da Regra'
+        field_references: 'Campo de Referência'
+        operator: 'Operador'
+        field_comparation: 'Campo de Comparação'
+        value_comparation: 'Valor de Comparação'

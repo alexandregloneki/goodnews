@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      account: 'Usuários'
+    attributes:
+      user:
+        name: 'Nome do Usuário'
+        email: 'E-mail'
+        city: 'Cidade'
+        state: 'Estado'
+        neighbord: 'Bairro'
+        street: 'Rua'
+        number_street: 'Número'
+        phone: 'Telefone de Contato'
+        postal_code: 'CEP'
+        country: 'País'
+        ddd: 'DDD'
+        second_name: 'Sobrenome'
+        user_document: 'CPF'

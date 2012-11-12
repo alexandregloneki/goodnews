@@ -1,0 +1,108 @@
+<script>
+	jQuery(document).ready(function(){
+		jQuery('#date_start').datepicker({dateFormat: 'dd/mm/yy'});
+		jQuery('#date_finish').datepicker({dateFormat: 'dd/mm/yy'});
+		jQuery('#rules_button').click(function(){
+			if (jQuery(this).attr('class')=='icon-chevron-up'){
+				jQuery('#rules').slideUp('slow');	
+				jQuery('.fields').slideUp('slow');
+				jQuery('#rules_button').attr('class', 'icon-chevron-down')
+			}else{
+				jQuery('#rules').slideDown('slow');
+				jQuery('.fields').slideDown('slow');	
+				jQuery('#rules_button').attr('class', 'icon-chevron-up')
+			}
+			
+		});
+	});
+</script>
+<div class="row-fluid">
+	<div data-pjax-container="" class="content">
+		<div class="page-header">
+			</div>
+				<%=breadcumb(@breadcumb)%>
+				<%=tabs(@tabsval)%>		
+          	</div>
+          	
+		<%= form_for(@workflow, :html => { :class => "form-horizontal denser"}) do |f| %>
+		  
+		  
+		  <% if @workflow.errors.any? %>
+		    <div class="alert alert-error">
+		      <ul>
+		      <% @workflow.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		  
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :name, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :name, :required=>true %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :status, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.select :status_id, @status %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :date_start, :class=>"control-label" %>
+			<div class="controls">
+			   <%valor_start = !@workflow.id.nil? ? I18n.l(@workflow.date_start) : nil%>
+			   <%= f.text_field :date_start, :value=>valor_start, :id=>'date_start' %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :date_finish, :class=>"control-label" %>
+			<%valor_finish = !@workflow.id.nil? ? I18n.l(@workflow.date_finish) : nil%>
+			<div class="controls">
+			   <%= f.text_field :date_finish, :value=>valor_finish,:id=>'date_finish', :format=>:default %>
+		  	</div>
+		  </div>
+		  
+		  <br/>
+			<div id="rules">
+				<ul class="nav nav-tabs">
+					<li title="" rel="" class="icon index_collection_link ">
+					</li>
+				</ul>   
+			  	<div class="alert alert-info">
+			        <i class="icon-random"></i>
+			        <strong style="margin-left: 50px">Workflow Rules.</strong> Cadastre a(s) regra(s) de seu Workflow!.
+	      		</div>
+	  			<%=f.fields_for :rules do |builder| %>
+					<%=render 'rule_fields', :f => builder%>
+				<% end %>
+				
+			</div>
+			
+		<i id="rules_button" class="icon-chevron-up" style="cursor:pointer; float: left;"></i>
+		<div class='form-actions'>
+            
+            <%= link_to_add_fields "Adicionar Regra", f, :rules %>
+            <button type='submit' name='sub' data-disable-with='Salvar' class='btn btn-primary' value="save">
+              <i class='icon-white icon-ok'></i>
+              Salvar
+            </button>
+            
+            <span class='extra_buttons'>
+              <button type='submit' name='sub' data-disable-with='Salvar e adicionar' class='btn btn-info' value="saveadd">
+              Salvar e adicionar novo
+              </button>
+              <button type='submit' name='sub' data-disable-with='Salvar e editar' class='btn btn-info' value="saveedit">
+              Salvar e editar
+              </button>
+              
+              <button type='submit' name='sub' data-disable-with='Cancelar' class='btn'>
+              <i class='icon-remove'></i>
+              Cancelar
+              </button>
+              
+            </span>
+         </div>	
+<%end%>
+

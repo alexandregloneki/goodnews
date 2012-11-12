@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+      <%unless @email_send.message.nil?%>
+      	<%=@email_send.message.html_safe%>
+      <%end%>
+     <em>Este é um e-mail enviado no sistema GoodNews</em>
+    
+  </body>
+</html>

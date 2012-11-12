@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GoodNotice API</title>
+  <%= stylesheet_link_tag    "application", "rails_admin/imports", :media => "all" %>
+  <%= javascript_include_tag "application", "drop_down" %>
+  <script>
+  	jQuery(document).ready(function(){
+  		jQuery('.dropdown-toggle').dropdown();
+  		jQuery('.navbar-inner').css('background-image', 'none')
+  		jQuery('.navbar-inner').css('background-color', '#5BB65B')
+  		jQuery('.dropdown-toggle').css('color', '#FFF')
+  		jQuery('.dropdown-menu li a').mouseover(function(){
+  			jQuery(this).css('background-color', '#5BB65B')
+  		});
+  		jQuery('.dropdown-menu li a').mouseout(function(){
+  			jQuery(this).css('background-color', '#FFF')
+  		});
+  		jQuery('.brand').css('color', '#FFF')
+  		
+  	});
+  	
+  </script>
+</head>
+<body>
+	<div class="navbar navbar-static" id="navbar-example">
+            <div class="navbar-inner">
+              <div style="width: auto;" class="container">
+                <span href="#" class="brand">GoodNotice</span>
+                <ul class="nav pull-right">
+                  <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Menu<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="<%=APP_URL%>/api_testes/view_send_data">Enviar Parametros</a></li>
+                      <li><a href="#">Consultar Workflows</a></li>
+                      <li><a href="#">Consultar Emails</a></li>
+                      <li><a href="#">Consultar Sms</a></li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+	<div class="container">
+		<%=yield%>
+	</div>
+</body>
+</html>

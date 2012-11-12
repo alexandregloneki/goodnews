@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Field references:</b>
+  <%= @rule.field_references %>
+</p>
+
+<p>
+  <b>Field comparation:</b>
+  <%= @rule.field_comparation %>
+</p>
+
+<p>
+  <b>Value comparation:</b>
+  <%= @rule.value_comparation %>
+</p>
+
+<p>
+  <b>Operator:</b>
+  <%= @rule.operator %>
+</p>
+
+<p>
+  <b>Workflow:</b>
+  <%= @rule.workflow %>
+</p>
+
+
+<%= link_to 'Edit', edit_rule_path(@rule) %> |
+<%= link_to 'Back', rules_path %>

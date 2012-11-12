@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account: 
+  plan: 
+  status: 
+  observacao: MyText
+
+two:
+  account: 
+  plan: 
+  status: 
+  observacao: MyText

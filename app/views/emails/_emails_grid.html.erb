@@ -1,0 +1,39 @@
+<%= grid(@emails_grid, :upper_pagination_panel => true) do |g|
+
+  g.column :name=>I18n.t('activerecord.attributes.email.title'),:attribute=>'title', :in_csv => true do |email|
+    email.title
+  end
+
+  g.column  :name=>I18n.t('activerecord.attributes.email.to'), :attribute=>'to', :in_csv => true do |email|
+    email.to
+  end
+
+  g.column :name=>I18n.t('activerecord.attributes.email.status'), :attribute=>'status_id',:in_csv => true, :custom_filter=>@status do |email|
+    email.status.name
+  end
+
+  g.column :html=>{:class=>"last links"}, :in_csv => false do |email|
+  
+    "<ul class='inline'><li class='icon show_member_link' rel='tooltip' title='Mostrar'>".html_safe+
+    	"<a href='/emails/#{email.id}' class='pjax'>".html_safe+
+          "<i class='icon-info-sign'></i>".html_safe+
+          "<span style='display:none'>Show</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe+
+    
+      "<li class='icon edit_member_link ' rel='tooltip' title='Editar'>".html_safe+
+        "<a href='/emails/#{email.id}/edit' class='pjax'>".html_safe+
+          "<i class='icon-pencil'></i>".html_safe+
+          "<span style='display:none'>Edit</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe+
+    
+      "<li class='icon delete_member_link ' rel='tooltip' title='Excluir'>".html_safe+
+        "<a rel='nofollow' data-method='delete' data-confirm='".html_safe+I18n.t('application.mensagens.ask_delete')+"' href='/emails/#{email.id}'>".html_safe+
+          "<i class='icon-remove'></i>".html_safe+
+          "<span style='display:none'>Delete</span>".html_safe+
+        "</a>".html_safe+
+      "</li>".html_safe+
+    "</ul>".html_safe
+  end
+end -%>

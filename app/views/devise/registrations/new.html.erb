@@ -1,0 +1,28 @@
+<script>
+	$(document).ready(function(){
+		$('#error_explanation').children('h2').remove();
+		if($('#error_explanation').length){
+			$('.box').css('height','405px');
+		}
+	});
+</script>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:class=>"box login", :style=>'height:355px'}) do |f| %>
+	<label>Criar Conta</label>
+	
+	<fieldset class="boxBody">
+		
+		<label style="color:red; font-size:11px;"><%= devise_error_messages! %></label>
+		<label>E-mail</label>
+		<%= f.email_field :email, :tabindex=>"1", :required=>true %>
+		<label>Senha</label>
+		<%= f.password_field :password, :tabindex=>"2", :required=>true %>
+		<label>Confirmar Senha</label>
+		<%= f.password_field :password_confirmation, :tabindex=>"2", :required=>true %>
+	</fieldset>
+	<footer>
+		<%=link_to 'voltar', emails_path()%>
+		<%= f.submit "Criar Conta", :class=>"btnLogin" %>
+	</footer>
+	
+<% end %>
+			

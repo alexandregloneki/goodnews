@@ -1,0 +1,33 @@
+<%=breadcumb(@breadcumb)%>
+<%=tabs(@tabsval)%>
+<dl>
+	<dt class="ddd_field label string_type">Title</dt>
+	<dd>  
+		<pre class="prettyprint"><%= @email.title %></pre>
+	</dd>
+	<dt class="label number_dispatch_field string_type">Status</dt>
+	<dd>
+		<pre class="prettyprint"><%= @email.status.name %></pre>
+	</dd>
+	<dt class="label name_sender_field string_type">To</dt>
+	<dd>
+		<pre class="prettyprint"><%= @email.to %></pre>
+	</dd>
+	<%unless @email.cc.nil? %>
+	<dt class="label phone_sender_field string_type">CC</dt>
+	<dd>
+		<pre class="prettyprint"><%= @email.cc %></pre>
+	</dd>
+	<%end%>
+	<%unless @email.cco.nil? %>
+	<dt class="label phone_sender_field string_type">CCO</dt>
+	<dd>
+		<pre class="prettyprint"><%= @email.cco %></pre>
+	</dd>
+	<%end%>
+	<dt class="label phone_sender_field string_type">Message</dt>
+	<dd>
+		<pre class="prettyprint"><%= @email.message.html_safe %></pre>
+	</dd>
+	<%= link_to 'Back', emails_path %>		
+</dl>

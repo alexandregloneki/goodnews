@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      workflow: 'Workflow'
+    attributes:
+      workflow:
+        name: 'Nome'
+        date_start: 'Data Inicial'
+        date_finish: 'Data Final'
+        status: 'Status'
+        phnoe_sender: 'Telefone do Emissor'
+        message: 'Mensagem'
+  workflow:
+    mensagens:
+      send_save_success: 'Comunicação criada com sucesso!'
+      select_comunication: "Selecione a comunicação desejada para este Workflow"
+      

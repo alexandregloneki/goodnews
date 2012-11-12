@@ -1,0 +1,14 @@
+<%=debug(flash)%>
+<p>
+  <b>Name:</b>
+  <%= @operator.name %>
+</p>
+
+<p>
+  <b>Simbol:</b>
+  <%= @operator.simbol %>
+</p>
+
+
+<%= link_to 'Edit', edit_operator_path(@operator) %> |
+<%= link_to 'Back', operators_path %>

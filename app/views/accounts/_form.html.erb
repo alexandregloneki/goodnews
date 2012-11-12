@@ -1,0 +1,103 @@
+<script>
+	jQuery(document).ready(function(){
+		jQuery('#user_user_document').mask('999.999.999-99')
+		jQuery("#user_postal_code").mask("99999-999");
+		jQuery("#user_phone").mask("(99) 9999-9999");
+	});
+</script>
+<div class="row-fluid">
+	<div data-pjax-container="" class="content">
+		<div class="page-header">
+			</div>
+				<%=breadcumb(@breadcumb)%>
+				<%=tabs(@tabsval)%>		
+          	</div>
+        <%= form_for @user, :url => account_path(@user), :method => :put, :html => { :class => "form-horizontal denser" } do |f| %>
+				  
+		  <% if @user.errors.any? %>
+		    <div class="alert alert-error">
+		      <ul>
+		      <% @user.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		  <fieldset>
+		  <div class="control-group string_type name_field">
+		  	
+		  	<%= f.label :name, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :name, :required=>true %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :second_name, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :second_name %>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :user_document, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :user_document %>
+		  	</div>
+		  </div>
+    	   <div class="control-group string_type name_field">
+		  	<%= f.label :phone, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :phone%>
+		  	</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :country, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :country%>
+			</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :state, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :state%>
+			</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :city, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :city%>
+			</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :neighbord, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :neighbord%>
+			</div>
+		  </div>
+		  <div class="control-group string_type name_field">
+		  	<%= f.label :street, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :street%>
+			</div>
+		  </div>
+			<div class="control-group string_type name_field">
+		  	<%= f.label :number_street, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :number_street%>
+			</div>
+		  </div>
+			<div class="control-group string_type name_field">
+		  	<%= f.label :postal_code, :class=>"control-label" %>
+			<div class="controls">
+			   <%= f.text_field :postal_code%>
+			</div>
+		  </div>
+	<div class='form-actions'>
+	  <button type='submit' name='_add_another' data-disable-with='Editar Conta' class='btn btn-primary'>
+	       Editar Conta
+	  </button>
+	  <button type='submit' name='_continue' data-disable-with='Cancel' class='btn'>
+      <i class='icon-remove'></i>
+          Cancel
+      </button>
+	</div>
+<% end %>

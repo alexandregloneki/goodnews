@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      account: 'Conta'
+    attributes:
+      account:
+        status: 'Status'
+        token_access: 'Token de Acesso'
+        created_at: 'Criada em'
+  account:
+    mensagens:
+      edit_success: 'Conta alterada com sucesso!'
+    titulos:
+      data_user: 'Dados do Usuário'
+      data_account: 'Dados da Conta'
+      key_access: 'Chave de Acesso a API'
+        
